@@ -1,0 +1,28 @@
+# 自定义音源脚本（可能含个人 API Key，切勿提交到公开仓库）
+app/src/main/assets/lx/sources/
+
+# Gradle / Android 构建产物与本地配置
+build/
+app/build/
+.gradle/
+local.properties
+**/local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+*.jks
+*.keystore
+
+# QuickJS 源码与 NDK 编译中间文件（运行 bash tools/setup_quickjs.sh 获取）
+third_party/
+app/.cxx/
+tools/device_libs/
+
+# 历史归档与系统/IDE 临时文件
+legacy_removed/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+*.log

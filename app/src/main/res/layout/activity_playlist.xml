@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="120dp"
+            android:layout_height="64dp"
+            android:background="#444444"
+            android:text="‹ 返回"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnPlayAll"
+            android:layout_width="150dp"
+            android:layout_height="64dp"
+            android:background="#2E5E8C"
+            android:text="播放全部"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btnAction"
+            android:layout_width="150dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:background="#444444"
+            android:text="操作"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btnImport"
+            android:layout_width="150dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:background="#444444"
+            android:text="导入歌单"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btnStartup"
+            android:layout_width="150dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:background="#444444"
+            android:text="列表顺序"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lvLists"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:background="#1A1A1A"
+            android:choiceMode="singleChoice"
+            android:divider="#333333"
+            android:dividerHeight="1dp" />
+
+        <ListView
+            android:id="@+id/lvSongs"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:divider="#333333"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="true" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Conscrypt 声明的 minSdk 高于 19，强制允许装到 Android 4.4（车机已验证可用）；QuickJS 改为源码编译 -->
+    <uses-sdk tools:overrideLibrary="org.conscrypt" />
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 日志/崩溃报告写到 /sdcard/CarMusic/logs，方便 adb pull 或 U 盘拷出 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 天气：只读 GPS 最后已知位置，不主动定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/logo"
+        android:label="车机桌面"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <!-- 音乐页：桌面的子页面（原来的独立播放器和启动页已移除，只保留桌面一个入口） -->
+        <activity android:name=".music.MusicActivity"
+            android:screenOrientation="sensorLandscape"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false" />
+
+        <!-- 播放队列 / 我的歌单 -->
+        <activity android:name=".music.PlaylistActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false" />
+
+        <!-- 在线搜索 -->
+        <activity android:name=".OnlineActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false" />
+
+        <!-- 音乐源管理 / 自检 / 日志 -->
+        <activity android:name=".SourceActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false" />
+
+        <service android:name=".MusicService"
+                 android:enabled="true"
+                 android:exported="false" />
+
+        <!-- 车机桌面：可设为默认桌面，与系统桌面互相切换 -->
+        <activity android:name=".home.LauncherActivity"
+            android:label="车机桌面"
+            android:launchMode="singleTask"
+            android:stateNotNeeded="true"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation|screenSize"
+            android:windowSoftInputMode="adjustNothing|stateHidden"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- 也在应用列表里放一个入口，没设为默认桌面时也能打开 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".home.AllAppsActivity"
+            android:label="全部应用"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false" />
+
+        <!-- 只用于重新弹出"选择默认桌面"框，平时禁用（见 FakeHomeActivity） -->
+        <activity android:name=".home.FakeHomeActivity"
+            android:label="车机桌面（切换中）"
+            android:enabled="false"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
