@@ -1,4 +1,4 @@
-# HAPlayer-LX — 轻量级车机音乐桌面（支持 Android 4.4+）
+# OldCarPlay — 轻量级车机音乐桌面（支持 Android 4.4+）
 
 一款面向**老旧车机（Android 4.4.2 / API 19，32 位 ARM，1.7GB RAM，横屏宽屏）**深度优化的 CarPlay 风格车载桌面与音乐播放器，同时兼容较新版本的 Android 车机与平板设备。
 
@@ -72,7 +72,7 @@
 ## 目录结构
 
 ```text
-haplayer-lx/
+oldcarplay/
 ├── app/
 │   ├── build.gradle                  # 构建配置（AGP 8.3.0 / NDK 25.2.9519653 / CMake 3.22.1）
 │   └── src/main/
@@ -109,14 +109,14 @@ haplayer-lx/
 工程不直接打包上游 `quickjs-wrapper` 源码，构建前需先运行脚本拉取：
 
 ```bash
-cd haplayer-lx
+cd oldcarplay
 bash tools/setup_quickjs.sh
 ```
 
 脚本会自动克隆 `HarlonWang/quickjs-wrapper` 并切换到 `2.4.0`（含 `native/quickjs` 子模块）到 `third_party/quickjs-wrapper/`。
 
 ### 步骤 2：配置 Android SDK 路径
-在 `haplayer-lx/` 根目录创建 `local.properties`（已被 `.gitignore` 忽略）：
+在 `oldcarplay/` 根目录创建 `local.properties`（已被 `.gitignore` 忽略）：
 
 ```properties
 sdk.dir=/你的/Android/sdk/路径
@@ -148,8 +148,8 @@ bash tools/check_so_symbols.sh
   ```
 - **Android 4.4 老车机（推荐 `push + pm install`，避免新版 adb 流式安装断连）**：
   ```bash
-  adb push app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/haplayer.apk
-  adb shell "pm install -r /data/local/tmp/haplayer.apk && rm -f /data/local/tmp/haplayer.apk"
+  adb push app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/oldcarplay.apk
+  adb shell "pm install -r /data/local/tmp/oldcarplay.apk && rm -f /data/local/tmp/oldcarplay.apk"
   ```
 
 ---
