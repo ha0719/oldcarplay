@@ -174,6 +174,7 @@ bash tools/check_so_symbols.sh
 
 ## 致谢与许可
 
+- 自定义音源协议与移动版实现参考自 [LX Music 移动版 (libai6666/lxmusic-android)](https://github.com/libai6666/lxmusic-android)
 - QuickJS Java/Android 封装参考自 [HarlonWang/quickjs-wrapper](https://github.com/HarlonWang/quickjs-wrapper)
 - 音频流播放基于 [ExoPlayer](https://github.com/google/ExoPlayer)
 - Android 4.4 TLS 1.2/1.3 支持基于 [Conscrypt](https://github.com/google/conscrypt)
